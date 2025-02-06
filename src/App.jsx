@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
-
 import Navbar from "./components/Navbar";
 import "./index.css";
 import Sidebar from "./components/Sidebar";
@@ -11,17 +10,19 @@ import Orders from "./pages/Orders";
 import Login from "./components/Login";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
+export const currency = 'Rs.'
 const App = () => {
   const [token, setToken] = useState(
     localStorage.getItem("token") ? localStorage.getItem("token") : ""
   );
+
   useEffect(() => {
     localStorage.setItem("token", token);
   }, [token]);
   return (
     <div className="bg-gray-50 min-h-screen">
       <ToastContainer />
-      {token == "" ? (
+      {token === "" ? (
         <Login setToken={setToken} />
       ) : (
         <>
